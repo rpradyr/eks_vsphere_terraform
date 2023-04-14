@@ -1,1 +1,1 @@
-# eksa_vsphere_terraform
+# eks_vsphere_terraform
