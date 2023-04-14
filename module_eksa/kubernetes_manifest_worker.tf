@@ -17,8 +17,8 @@ resource "kubernetes_manifest" "worker_spec" {
       "template"     = local.template[var.os_family][var.k8s_version]
       "users" = [
         {
-          "name"              = local.sshUser
-          "sshAuthorizedKeys" = [data.aws_secretsmanager_secret_version.ssh_keys.secret_string]
+          "name"              = var.sshUser
+          "sshAuthorizedKeys" = [data.aws_secretsmanager_secret_version.sshAuthorizedKeys.secret_string]
         },
       ]
     }

@@ -24,7 +24,7 @@ variable "cluster_size" {
 
 variable "api_ip" {
   type        = string
-  description = "Cluster endpoint API IP (Any unised IP from [10.40.105.172-200]. Best way to fetch is by ping or TCP 6443 check)"
+  description = "Cluster endpoint API IP (Any static unused IP outside the DHCP range that is used for node IP assignment. Best way to fetch is either by nmap or netcat on TCP 6443)"
 }
 
 variable "k8s_version" {
@@ -43,13 +43,19 @@ variable "os_family" {
   }
 }
 
-variable "ssh_keys_secret_name" {
+variable "sshAuthorizedKeys" {
   type        = string
   description = "sshAuthorizedKeys to ssh into the nodes"
   sensitive   = true
 }
 
-variable "tags" {
+variable "sshUser" {
+  type        = string
+  description = "ssh user to login to nodes"
+  default     = "ec2-user"
+}
+
+variable "secret_tags" {
   type        = map(string)
   description = "Resource tags for the AWS Secret"
 }

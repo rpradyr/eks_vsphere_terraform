@@ -1,8 +1,8 @@
-data "aws_secretsmanager_secret" "ssh_keys" {
-  name = var.ssh_keys_secret_name
+data "aws_secretsmanager_secret" "sshAuthorizedKeys" {
+  name = var.sshAuthorizedKeys
 }
-data "aws_secretsmanager_secret_version" "ssh_keys" {
-  secret_id = data.aws_secretsmanager_secret.ssh_keys.id
+data "aws_secretsmanager_secret_version" "sshAuthorizedKeys" {
+  secret_id = data.aws_secretsmanager_secret.sshAuthorizedKeys.id
 }
 
 data "kubernetes_secret" "cluster_kubeconfig" {

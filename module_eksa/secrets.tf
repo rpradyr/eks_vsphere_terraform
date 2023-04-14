@@ -1,6 +1,6 @@
 resource "aws_secretsmanager_secret" "workload_kubeconfig" {
   name = format("prod/eksa/%s_kubeconfig", var.cluster_name)
-  tags = merge(local.validated_tags, { Name = format("prod/eksa/%s_kubeconfig", var.cluster_name) })
+  tags = var.secret_tags
 }
 
 resource "aws_secretsmanager_secret_version" "workload_kubeconfig" {
