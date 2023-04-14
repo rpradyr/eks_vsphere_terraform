@@ -80,7 +80,9 @@ spec:
 apiVersion: anywhere.eks.amazonaws.com/v1alpha1
 kind: VSphereMachineConfig
 metadata:
-  name: mgmt-cluster   #change me
+  annotations:
+    anywhere.eks.amazonaws.com/etcd: "true"
+  name: mgmt-cluster-etcd   #change me
   namespace: default
 spec:
   datastore: /vsphere_datacenter/datastore/datastore_name   #change me
@@ -99,9 +101,7 @@ spec:
 apiVersion: anywhere.eks.amazonaws.com/v1alpha1
 kind: VSphereMachineConfig
 metadata:
-  annotations:
-    anywhere.eks.amazonaws.com/etcd: "true"
-  name: mgmt-cluster-etcd   #change me
+  name: mgmt-cluster   #change me
   namespace: default
 spec:
   datastore: /vsphere_datacenter/datastore/datastore_name   #change me
