@@ -44,7 +44,4 @@ locals {
     "large"   = 5,
     "x-large" = 7
   }
-
-  sshUser        = var.os_family == "ubuntu" ? "udemy-breakglass" : "ec2-user"
-  validated_tags = module.tagger.output_tags
 }
