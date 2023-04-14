@@ -41,7 +41,6 @@ spec:
       kind: VSphereMachineConfig
       name: mgmt-cluster  #change me
     name: worker
-
 ---
 apiVersion: anywhere.eks.amazonaws.com/v1alpha1
 kind: VSphereDatacenterConfig
@@ -117,3 +116,4 @@ spec:
     sshAuthorizedKeys:  #[optional] Auto-generates if left null
     - "ssh-rsa AAAA..." 
 ---
+

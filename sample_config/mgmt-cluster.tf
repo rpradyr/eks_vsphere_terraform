@@ -190,3 +190,4 @@ resource "kubernetes_manifest" "worker_mgmt-cluster" {
     }
   }
 }
+
