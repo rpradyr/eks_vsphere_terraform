@@ -48,16 +48,3 @@ locals {
   sshUser        = var.os_family == "ubuntu" ? "udemy-breakglass" : "ec2-user"
   validated_tags = module.tagger.output_tags
 }
-
-module "tagger" {
-  source = "../../aws/udemy_tagger"
-  input_tags = {
-    Name        = ""
-    Owner       = can(lookup(var.tags, "Owner")) ? var.tags["Owner"] : "InfraEng"
-    consumers   = can(lookup(var.tags, "consumers")) ? var.tags["consumers"] : "InfraEng"
-    cluster     = var.cluster_name
-    role        = "eks_anywhere"
-    environment = var.tags["Env"]
-    Env         = var.tags["Env"]
-  }
-}
