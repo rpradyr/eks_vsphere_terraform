@@ -1,0 +1,119 @@
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: Cluster
+metadata:
+  name: mgmt-cluster  #change me
+  namespace: default
+spec:
+  bundlesRef:
+    apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+    name: bundles-26
+    namespace: eksa-system
+  clusterNetwork:
+    cniConfig:
+      cilium: {}
+    pods:
+      cidrBlocks:
+      - 192.168.0.0/16
+    services:
+      cidrBlocks:
+      - 10.96.0.0/12
+  controlPlaneConfiguration:
+    count: 3
+    endpoint:
+      host: 172.16.10.2 #change me
+    machineGroupRef:
+      kind: VSphereMachineConfig
+      name: mgmt-cluster-cp #change me
+  datacenterRef:
+    kind: VSphereDatacenterConfig
+    name: mgmt-cluster  #change me
+  externalEtcdConfiguration:
+    count: 3
+    machineGroupRef:
+      kind: VSphereMachineConfig
+      name: mgmt-cluster-etcd
+  kubernetesVersion: "1.24" #change me
+  managementCluster:
+    name: mgmt-cluster  #change me
+  workerNodeGroupConfigurations:
+  - count: 3
+    machineGroupRef:
+      kind: VSphereMachineConfig
+      name: mgmt-cluster  #change me
+    name: worker
+
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: VSphereDatacenterConfig
+metadata:
+  name: mgmt-cluster  #change me
+  namespace: default
+spec:
+  datacenter: vsphere_datacenter  #change me
+  insecure: true
+  network: /vsphere_datacenter/network/network_name  #change me
+  server: vcenter_fqdn  #change me 
+  thumbprint: ""  
+
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: VSphereMachineConfig
+metadata:
+  annotations:
+    anywhere.eks.amazonaws.com/control-plane: "true"
+  name: mgmt-cluster-cp   #change me
+  namespace: default
+spec:
+  datastore: /vsphere_datacenter/datastore/datastore_name   #change me
+  diskGiB: 25
+  folder: /vsphere_datacenter/vm/folder_name   #change me
+  memoryMiB: 8192 
+  numCPUs: 2
+  osFamily: bottlerocket    #change me
+  resourcePool: /vsphere_datacenter/host/cluster_name/Resources/resourcepool_name    #change me
+  template: /vsphere_datacenter/vm/template_path/template_name    #change me
+  users:
+  - name: ec2-user
+    sshAuthorizedKeys:  #[optional] Auto-generates if left null
+    - "ssh-rsa AAAA..." 
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: VSphereMachineConfig
+metadata:
+  name: mgmt-cluster   #change me
+  namespace: default
+spec:
+  datastore: /vsphere_datacenter/datastore/datastore_name   #change me
+  diskGiB: 25
+  folder: /vsphere_datacenter/vm/folder_name   #change me
+  memoryMiB: 8192 
+  numCPUs: 2
+  osFamily: bottlerocket    #change me
+  resourcePool: /vsphere_datacenter/host/cluster_name/Resources/resourcepool_name    #change me
+  template: /vsphere_datacenter/vm/template_path/template_name    #change me
+  users:
+  - name: ec2-user
+    sshAuthorizedKeys:  #[optional] Auto-generates if left null
+    - "ssh-rsa AAAA..." 
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: VSphereMachineConfig
+metadata:
+  annotations:
+    anywhere.eks.amazonaws.com/etcd: "true"
+  name: mgmt-cluster-etcd   #change me
+  namespace: default
+spec:
+  datastore: /vsphere_datacenter/datastore/datastore_name   #change me
+  diskGiB: 25
+  folder: /vsphere_datacenter/vm/folder_name   #change me
+  memoryMiB: 8192 
+  numCPUs: 2
+  osFamily: bottlerocket    #change me
+  resourcePool: /vsphere_datacenter/host/cluster_name/Resources/resourcepool_name    #change me
+  template: /vsphere_datacenter/vm/template_path/template_name    #change me
+  users:
+  - name: ec2-user
+    sshAuthorizedKeys:  #[optional] Auto-generates if left null
+    - "ssh-rsa AAAA..." 
+---
