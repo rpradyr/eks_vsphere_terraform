@@ -1,12 +1,12 @@
 locals {
   template = {
     "ubuntu" = {
-      "1.23" = "/vsphere_datacenter/vm/template_path/template_name", #change me
-      "1.24" = "/vsphere_datacenter/vm/template_path/template_name"  #change me
+      "1.23" = "/vsphere_datacenter/vm/template_path/template_name",  #change me
+      "1.24" = "/vsphere_datacenter/vm/template_path/template_name"   #change me
     }
     "bottlerocket" = {
-      "1.23" = "/vsphere_datacenter/vm/template_path/template_name",                                                     #change me
-      "1.24" = "/va2-datacenter/vm/EKSA-NodeImages/Bottlerocket_ova/bottlerocket-vmware-k8s-1.24-x86_64-1.10.1-5d27ae74" #change me
+      "1.23" = "/vsphere_datacenter/vm/template_path/template_name",  #change me
+      "1.24" = "/vsphere_datacenter/vm/template_path/template_name"   #change me
     }
   }
   numCPUs = {
