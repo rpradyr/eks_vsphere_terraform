@@ -2,9 +2,9 @@ terraform {
   backend "s3" {
     region         = ""
     profile        = ""
-    bucket         = "eksa-tfstate-file"
-    key            = "eksa-blog-demo-terraform.state"
-    dynamodb_table = "eksa-terraform-state-lock"
+    bucket         = "eksa-tfstate-file"                 #change me
+    key            = "eksa-blog-demo-terraform.state"    #change me
+    dynamodb_table = "eksa-terraform-state-lock"         #change me
   }
 }
 
