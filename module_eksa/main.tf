@@ -1,12 +1,12 @@
 locals {
   template = {
     "ubuntu" = {
-      "1.23" = "/vsphere_datacenter/vm/template_path/template_name",  #change me
-      "1.24" = "/vsphere_datacenter/vm/template_path/template_name"   #change me
+      "1.23" = "/vsphere_datacenter/vm/template_path/template_name", #change me
+      "1.24" = "/vsphere_datacenter/vm/template_path/template_name"  #change me
     }
     "bottlerocket" = {
-      "1.23" = "/vsphere_datacenter/vm/template_path/template_name",  #change me
-      "1.24" = "/vsphere_datacenter/vm/template_path/template_name"   #change me
+      "1.23" = "/vsphere_datacenter/vm/template_path/template_name", #change me
+      "1.24" = "/vsphere_datacenter/vm/template_path/template_name"  #change me
     }
   }
   numCPUs = {
